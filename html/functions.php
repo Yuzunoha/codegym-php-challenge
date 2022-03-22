@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @param string $name ユーザー名
  * @return PDOStatement ユーザー情報の連想配列を格納したPDOStatement
