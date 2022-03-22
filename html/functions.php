@@ -67,7 +67,9 @@ function getTweets()
 /* 返信課題はここからのコードを修正しましょう。 */
 function getTweet($id)
 {
-    $sql = 'select * from tweets where id = :id';
+    $sql = 'select t.id, t.text, t.user_id, t.created_at, t.updated_at, u.name, t.reply_id';
+    $sql .= ' from tweets t join users u on t.user_id = u.id';
+    $sql .= ' where t.id = :id';
     $stmt = getPdo()->prepare($sql);
     $stmt->bindValue(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
