@@ -76,4 +76,8 @@ function getTweet($id)
     return $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
 }
 
+function getUserName($id)
+{
+    return getTweet($id)['name'];
+}
 /* 返信課題はここからのコードを修正しましょう。 */

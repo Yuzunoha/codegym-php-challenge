@@ -56,7 +56,7 @@ $tweet_count = count($tweets);
         <div class="card mb-3">
             <div class="card-body">
                 <form method="POST">
-                    <textarea class="form-control" type=textarea name="tweet_textarea" ?><!-- 返信課題はここを修正しましょう。 --></textarea>
+                    <textarea class="form-control" type=textarea name="tweet_textarea" ?><?= getUserName($_GET['reply']) ?></textarea>
                     <!-- 返信課題はここからのコードを修正しましょう。 -->
                     <!-- 返信課題はここからのコードを修正しましょう。 -->
                     <br>
@@ -71,7 +71,8 @@ $tweet_count = count($tweets);
                     <p class="card-title"><b><?= "{$t['id']}" ?></b> <?= "{$t['name']}" ?> <small><?= "{$t['updated_at']}" ?></small></p>
                     <p class="card-text"><?= "{$t['text']}" ?></p>
                     <!--返信課題はここから修正しましょう。-->
-                    <p>[返信する]
+                    <p>
+                        <a href="index.php?reply=2">[返信する]</a>
                         <?php if (isset($t['reply_id'])) { ?>
                             <a href="/view.php?id=<?= "{$t['reply_id']}" ?>">[返信元のメッセージ]</a>
                         <?php } ?>
