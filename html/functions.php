@@ -56,7 +56,7 @@ function createTweet($text, $user_id)
  */
 function getTweets()
 {
-    $sql = 'select t.id, t.text, t.user_id, t.created_at, t.updated_at, u.name';
+    $sql = 'select t.id, t.text, t.user_id, t.created_at, t.updated_at, u.name, t.reply_id';
     $sql .= ' from tweets t join users u on t.user_id = u.id';
     $sql .= ' order by t.updated_at desc';
     $stmt = getPdo()->prepare($sql);
