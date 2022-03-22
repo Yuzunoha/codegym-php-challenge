@@ -80,4 +80,10 @@ function getUserName($id)
 {
     return getTweet($id)['name'];
 }
+
+function getUserReplyText($post_id)
+{
+    //「Re: @名前」の文字列を作りましょう。
+    return "Re: @" . getUserName($post_id) . ' ';
+}
 /* 返信課題はここからのコードを修正しましょう。 */
