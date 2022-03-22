@@ -51,6 +51,26 @@ function createTweet($text, $user_id)
 }
 
 /**
+ * @param string $text 投稿内容
+ * @param string $user_id ユーザーID
+ * @param string $reply_id 返信する対象の投稿ID
+ * @return bool 成功・失敗
+ */
+function createReply($text, $user_id, $reply_id)
+{
+    $sql = 'insert into tweets (text, user_id, created_at, updated_at, reply_id)';
+    $sql .= ' values (:text, :user_id, :created_at, :updated_at, :reply_id)';
+    $now = date("Y-m-d H:i:s");
+    $stmt = getPdo()->prepare($sql);
+    $stmt->bindValue(':text', $text, PDO::PARAM_STR);
+    $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+    $stmt->bindValue(':created_at', $now, PDO::PARAM_STR);
+    $stmt->bindValue(':updated_at', $now, PDO::PARAM_STR);
+    $stmt->bindValue(':reply_id', $reply_id, PDO::PARAM_STR);
+    return $stmt->execute();
+}
+
+/**
  * @return PDOStatement ユーザー情報の連想配列を格納したPDOStatement
  * 投稿の一覧を取得します。
  */
@@ -73,12 +93,14 @@ function getTweet($id)
     $stmt = getPdo()->prepare($sql);
     $stmt->bindValue(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
+    $a = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $a ? $a[0] : null;
 }
 
 function getUserName($id)
 {
-    return getTweet($id)['name'];
+    $t = getTweet($id);
+    return $t ? $t['name'] : null;
 }
 
 function getUserReplyText($post_id)
