@@ -56,8 +56,11 @@ $tweet_count = count($tweets);
     <div class="card mb-3">
       <div class="card-body">
         <form method="POST">
-          <textarea class="form-control" type=textarea name="tweet_textarea" ?><?= isset($_GET['reply']) ? getUserReplyText($_GET['reply']) : '' ?></textarea>
           <!-- 返信課題はここからのコードを修正しましょう。 -->
+          <textarea class="form-control" type=textarea name="tweet_textarea" ?><?= isset($_GET['reply']) ? getUserReplyText($_GET['reply']) : '' ?></textarea>
+          <?php if (isset($_GET['reply'])) { ?>
+            <input type="hidden" name="reply_post_id" value="<?= $_GET['reply'] ?>" />
+          <?php } ?>
           <!-- 返信課題はここからのコードを修正しましょう。 -->
           <br>
           <input class="btn btn-primary" type=submit value="投稿">
