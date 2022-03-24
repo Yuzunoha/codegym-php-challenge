@@ -95,7 +95,6 @@ $tweet_count = count($tweets);
               <a href="/view.php?id=<?= "{$t['reply_id']}" ?>">[返信元のメッセージ]</a>
             <?php } ?>
           </p>
-          <!--<p>[返信する] [返信元のメッセージ]</p>-->
           <!--返信課題はここまで修正しましょう。-->
         </div>
       </div>
