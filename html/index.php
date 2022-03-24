@@ -90,7 +90,7 @@ $tweet_count = count($tweets);
           <p class="card-text"><?= "{$t['text']}" ?></p>
           <!--返信課題はここから修正しましょう。-->
           <p>
-            <a href="index.php?reply=2">[返信する]</a>
+            <a href="index.php?reply=<?= "{$t['id']}" ?>">[返信する]</a>
             <?php if (isset($t['reply_id'])) { ?>
               <a href="/view.php?id=<?= "{$t['reply_id']}" ?>">[返信元のメッセージ]</a>
             <?php } ?>
