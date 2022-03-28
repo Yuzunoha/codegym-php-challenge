@@ -109,6 +109,17 @@ function getUserReplyText($post_id)
   return "Re: @" . getUserName($post_id) . ' ';
 }
 
-function getFavoritesByUserIdAndPostId($user_id, $post_id)
+function getFavoritesByMemberId(int $member_id): array
 {
+  $sql = 'select * from favorites';
+  $sql .= ' where member_id = :member_id';
+  $stmt = getPdo()->prepare($sql);
+  $stmt->bindValue(':member_id', $member_id, PDO::PARAM_INT);
+  $stmt->execute();
+  return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function getFavoritesByMemberIdAndPostId($member_id, $post_id)
+{
+  // TODO
 }

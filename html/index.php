@@ -63,8 +63,10 @@ if ($_GET) {
     // 自分のid
     $my_user_id = $_SESSION['user_id'];
   }
+  $my_user_id = $_SESSION['user_id'];
   echo '<pre>';
   print_r($_GET);
+  print_r(getFavoritesByMemberId($my_user_id));
   echo '</pre>';
 } else {
   echo 'なし';
