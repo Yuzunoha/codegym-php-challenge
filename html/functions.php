@@ -119,9 +119,16 @@ function getFavoritesByMemberId(int $member_id): array
   return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function getFavoritesByMemberIdAndPostId($member_id, $post_id)
+function getFavoritesByMemberIdAndPostId(int $member_id, int $post_id): array
 {
-  // TODO
+  $sql = 'select * from favorites';
+  $sql .= ' where member_id = :member_id';
+  $sql .= ' and post_id = :post_id';
+  $stmt = getPdo()->prepare($sql);
+  $stmt->bindValue(':member_id', $member_id, PDO::PARAM_INT);
+  $stmt->bindValue(':post_id', $post_id, PDO::PARAM_INT);
+  $stmt->execute();
+  return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 function createFavorite(int $member_id, int $post_id): bool

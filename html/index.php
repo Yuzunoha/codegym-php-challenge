@@ -67,7 +67,10 @@ if ($_GET) {
   echo '<pre>';
   print_r($_GET);
   print_r(getFavoritesByMemberId($my_user_id));
-  var_dump(createFavorite($my_user_id, 1));
+  var_dump(getFavoritesByMemberIdAndPostId(1, 2));
+  var_dump(getFavoritesByMemberIdAndPostId(1, 2) ? true : false);
+  var_dump([] ? true : false);
+  var_dump([false] ? true : false);
   echo '</pre>';
 } else {
   echo 'なし';
