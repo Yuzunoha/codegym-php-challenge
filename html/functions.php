@@ -161,3 +161,26 @@ function deleteFavorite(int $member_id, int $post_id): bool
   $stmt->bindValue(':post_id', $post_id, PDO::PARAM_INT);
   return $stmt->execute();
 }
+
+function isAlreadyFavorited(array $favorites, int $member_id, int $post_id): bool
+{
+  foreach ($favorites as $favorite) {
+    if (intval($favorite['member_id']) === intval($member_id)) {
+      if (intval($favorite['post_id'] === intval($post_id))) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+function cntFavorite(array $favorites, int $post_id): int
+{
+  $cnt = 0;
+  foreach ($favorites as $favorite) {
+    if (intval($favorite['post_id'] === intval($post_id))) {
+      $cnt++;
+    }
+  }
+  return $cnt;
+}
