@@ -145,15 +145,11 @@ function createFavorite(int $member_id, int $post_id): bool
 
 function deleteFavorite(int $member_id, int $post_id): bool
 {
-  // 動くsql
-  // delete from favorites where member_id = 1 and post_id = 1;
-  // TODO
-  $sql = 'insert into favorites (member_id, post_id, created_at)';
-  $sql .= ' values (:member_id, :post_id, :created_at)';
-  $now = date("Y-m-d H:i:s");
+  $sql = 'delete from favorites';
+  $sql .= ' where member_id = :member_id';
+  $sql .= ' and post_id = :post_id';
   $stmt = getPdo()->prepare($sql);
   $stmt->bindValue(':member_id', $member_id, PDO::PARAM_INT);
   $stmt->bindValue(':post_id', $post_id, PDO::PARAM_INT);
-  $stmt->bindValue(':created_at', $now, PDO::PARAM_STR);
   return $stmt->execute();
 }
