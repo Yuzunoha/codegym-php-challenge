@@ -56,8 +56,12 @@ if ($_POST) { /* POST Requests */
 
 if ($_GET) {
   /* クエリストリングがある */
-  if (1) {
+  if (isset($_GET['like_post_id'])) {
     /* いいねボタンが押された */
+    // 今いいねされた投稿id
+    $like_post_id = $_GET['like_post_id'];
+    // 自分のid
+    $my_user_id = $_SESSION['user_id'];
   }
   echo '<pre>';
   print_r($_GET);
