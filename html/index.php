@@ -73,8 +73,11 @@ if ($_GET) {
 
 $tweets = getTweets();
 $tweet_count = count($tweets);
-/* 返信課題はここからのコードを修正しましょう。 */
-/* 返信課題はここからのコードを修正しましょう。 */
+$favorites = getFavorites();
+
+echo '<pre>';
+print_r($favorites);
+echo '</pre>';
 ?>
 
 <!DOCTYPE html>
@@ -106,8 +109,8 @@ $tweet_count = count($tweets);
           <p class="card-title"><b><?= "{$t['id']}" ?></b> <?= "{$t['name']}" ?> <small><?= "{$t['updated_at']}" ?></small></p>
           <p class="card-text"><?= "{$t['text']}" ?></p>
           <!--返信課題はここから修正しましょう。-->
-          <a href="?fav_post_id=<?= 123 ?>"><img class="favorite-image" src='/images/heart-solid-gray.svg'></a>
-          <a href="?fav_post_id=<?= 123 ?>"><img class="favorite-image" src='/images/heart-solid-red.svg'></a>
+          <a href="?fav_post_id=<?= "{$t['id']}" ?>"><img class="favorite-image" src='/images/heart-solid-gray.svg'></a>
+          <a href="?fav_post_id=<?= "{$t['id']}" ?>"><img class="favorite-image" src='/images/heart-solid-red.svg'></a>
           <font color="#33CCFF"><b>123</b></font><br>
           <p>
             <a href="index.php?reply=<?= "{$t['id']}" ?>">[返信する]</a>

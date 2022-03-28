@@ -109,6 +109,14 @@ function getUserReplyText($post_id)
   return "Re: @" . getUserName($post_id) . ' ';
 }
 
+function getFavorites(): array
+{
+  $sql = 'select * from favorites';
+  $stmt = getPdo()->prepare($sql);
+  $stmt->execute();
+  return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 function getFavoritesByMemberId(int $member_id): array
 {
   $sql = 'select * from favorites';
