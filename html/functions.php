@@ -123,3 +123,15 @@ function getFavoritesByMemberIdAndPostId($member_id, $post_id)
 {
   // TODO
 }
+
+function createFavorite(int $member_id, int $post_id): bool
+{
+  $sql = 'insert into favorites (member_id, post_id, created_at)';
+  $sql .= ' values (:member_id, :post_id, :created_at)';
+  $now = date("Y-m-d H:i:s");
+  $stmt = getPdo()->prepare($sql);
+  $stmt->bindValue(':member_id', $member_id, PDO::PARAM_INT);
+  $stmt->bindValue(':post_id', $post_id, PDO::PARAM_INT);
+  $stmt->bindValue(':created_at', $now, PDO::PARAM_STR);
+  return $stmt->execute();
+}
