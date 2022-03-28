@@ -56,10 +56,10 @@ if ($_POST) { /* POST Requests */
 
 if ($_GET) {
   /* クエリストリングがある */
-  if (isset($_GET['like_post_id'])) {
+  if (isset($_GET['fav_post_id'])) {
     /* いいねボタンが押された */
     // 今いいねされた投稿id
-    $like_post_id = $_GET['like_post_id'];
+    $fav_post_id = $_GET['fav_post_id'];
     // 自分のid
     $my_user_id = $_SESSION['user_id'];
   }
@@ -105,8 +105,8 @@ $tweet_count = count($tweets);
           <p class="card-title"><b><?= "{$t['id']}" ?></b> <?= "{$t['name']}" ?> <small><?= "{$t['updated_at']}" ?></small></p>
           <p class="card-text"><?= "{$t['text']}" ?></p>
           <!--返信課題はここから修正しましょう。-->
-          <a href="?like_post_id=<?= 123 ?>"><img class="favorite-image" src='/images/heart-solid-gray.svg'></a>
-          <a href="?like_post_id=<?= 123 ?>"><img class="favorite-image" src='/images/heart-solid-red.svg'></a>
+          <a href="?fav_post_id=<?= 123 ?>"><img class="favorite-image" src='/images/heart-solid-gray.svg'></a>
+          <a href="?fav_post_id=<?= 123 ?>"><img class="favorite-image" src='/images/heart-solid-red.svg'></a>
           <font color="#33CCFF"><b>123</b></font><br>
           <p>
             <a href="index.php?reply=<?= "{$t['id']}" ?>">[返信する]</a>
