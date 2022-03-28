@@ -58,22 +58,17 @@ if ($_GET) {
   /* クエリストリングがある */
   if (isset($_GET['fav_post_id'])) {
     /* いいねボタンが押された */
-    // 今いいねされた投稿id
-    $fav_post_id = $_GET['fav_post_id'];
-    // 自分のid
-    $my_user_id = $_SESSION['user_id'];
+    $fav_post_id = $_GET['fav_post_id']; // 今いいねされた投稿id
+    $my_user_id = $_SESSION['user_id']; // 自分のuser_id
+    /* この投稿は自分が... */
+    if (getFavoritesByMemberIdAndPostId($my_user_id, $fav_post_id)) {
+      /* 既にいいねしている */
+      deleteFavorite($my_user_id, $fav_post_id); // いいねを消す
+    } else {
+      /* まだいいねしていない */
+      createFavorite($my_user_id, $fav_post_id); // いいねを付ける
+    }
   }
-  $my_user_id = $_SESSION['user_id'];
-  echo '<pre>';
-  print_r($_GET);
-  print_r(getFavoritesByMemberId($my_user_id));
-  var_dump(getFavoritesByMemberIdAndPostId(1, 2));
-  var_dump(getFavoritesByMemberIdAndPostId(1, 2) ? true : false);
-  var_dump([] ? true : false);
-  var_dump([false] ? true : false);
-  echo '</pre>';
-} else {
-  echo 'なし';
 }
 
 $tweets = getTweets();
