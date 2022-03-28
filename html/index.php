@@ -54,6 +54,18 @@ if ($_POST) { /* POST Requests */
   header("Location: index.php");
 }
 
+if ($_GET) {
+  /* クエリストリングがある */
+  if (1) {
+    /* いいねボタンが押された */
+  }
+  echo '<pre>';
+  print_r($_GET);
+  echo '</pre>';
+} else {
+  echo 'なし';
+}
+
 $tweets = getTweets();
 $tweet_count = count($tweets);
 /* 返信課題はここからのコードを修正しましょう。 */
@@ -89,8 +101,8 @@ $tweet_count = count($tweets);
           <p class="card-title"><b><?= "{$t['id']}" ?></b> <?= "{$t['name']}" ?> <small><?= "{$t['updated_at']}" ?></small></p>
           <p class="card-text"><?= "{$t['text']}" ?></p>
           <!--返信課題はここから修正しましょう。-->
-          <a href=""><img class="favorite-image" src='/images/heart-solid-gray.svg'></a>
-          <a href=""><img class="favorite-image" src='/images/heart-solid-red.svg'></a>
+          <a href="?like_post_id=<?= 123 ?>"><img class="favorite-image" src='/images/heart-solid-gray.svg'></a>
+          <a href="?like_post_id=<?= 123 ?>"><img class="favorite-image" src='/images/heart-solid-red.svg'></a>
           <font color="#33CCFF"><b>123</b></font><br>
           <p>
             <a href="index.php?reply=<?= "{$t['id']}" ?>">[返信する]</a>
